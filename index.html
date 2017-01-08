@@ -7,6 +7,7 @@
       src="https://code.jquery.com/jquery-3.1.1.min.js"
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
       crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="stylesheet.css">
     <script src="app.js" charset="utf-8"></script>
     </head>
   <body>
@@ -17,12 +18,37 @@
       <input type="text" id="employeeLastName" name="employeeLastName" />
       <label for="employeeIdNumber">ID Number</label>
       <input type="text" name="employeeIdNumber" />
+      <label for="jobTitle">Job Title</label>
+      <input type"text" id="jobTitle" name="employeeLastName" />
+      <label for="annualSalary">Annual Salary</label>
+      <input type="text" name="annualSalary" / >
       <input type="submit" value="Submit" />
     </form>
 
     <div id="employees">
-      <h2>Employees</h2>
-      <!-- to be added via JavaScript -->
+      <h2>Employees List</h2>
+      <ul>
+        <li>
+          First Name
+        </li>
+        <li>
+          Last Name
+        </li>
+        <li>
+          ID
+        </li>
+        <li>
+          Title
+        </li>
+        <li>
+          Annual Salary
+        </li>
+      </ul>
     </div>
+    <div id="monthlySalary">
+      <h2>Monthly Salary Expenditure:</h2>
+    </div>
+      <!-- to be added via JavaScript -->
+
   </body>
 </html>
