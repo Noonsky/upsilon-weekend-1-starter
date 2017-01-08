@@ -1,54 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Weekend 1</title>
-    <script
-      src="https://code.jquery.com/jquery-3.1.1.min.js"
-      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-      crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="stylesheet.css">
     <script src="app.js" charset="utf-8"></script>
-    </head>
-  <body>
+</head>
+
+<body>
     <form>
-      <label for="employeeFirstName">First Name</label>
-      <input type="text" id="employeeFirstName" name="employeeFirstName" />
-      <label for="employeeLastName">Last Name</label>
-      <input type="text" id="employeeLastName" name="employeeLastName" />
-      <label for="employeeIdNumber">ID Number</label>
-      <input type="text" name="employeeIdNumber" />
-      <label for="jobTitle">Job Title</label>
-      <input type"text" id="jobTitle" name="employeeLastName" />
-      <label for="annualSalary">Annual Salary</label>
-      <input type="text" name="annualSalary" / >
-      <input type="submit" value="Submit" />
+        <div class="formline">
+            <label for="employeeFirstName">First Name</label>
+            <input type="text" id="employeeFirstName" name="employeeFirstName" /></div>
+        <div class="formline">
+            <label for="employeeLastName">Last Name</label>
+            <input type="text" id="employeeLastName" name="employeeLastName" /></div>
+        <div class="formline">
+            <label for="employeeIdNumber">ID Number</label>
+            <input type="text" id="employeeIdNumber" name="employeeIdNumber" /></div>
+        <div class="formline">
+            <label for="employeeJobTitle">Job Title</label>
+            <input type="text" id="employeeJobTitle" name="employeeJobTitle" /></div>
+        <div class="formline">
+            <label for="employeeSalary">Annual Salary</label>
+            <input type="text" id="employeeSalary" name="employeeSalary" /></div>
+        <input type="submit" value="Submit" />
+
     </form>
 
     <div id="employees">
-      <h2>Employees List</h2>
-      <ul>
-        <li>
-          First Name
-        </li>
-        <li>
-          Last Name
-        </li>
-        <li>
-          ID
-        </li>
-        <li>
-          Title
-        </li>
-        <li>
-          Annual Salary
-        </li>
-      </ul>
+        <h2><span> Employees List</h2>
+        <ul>
+            <li id="top">First Name</li>
+            <li id="top">Last Name</li>
+            <li id="top">ID</li>
+            <li id="top">Title</li>
+            <li id="top">Annual Salary</li>
+        </ul>
     </div>
     <div id="monthlySalary">
-      <h2>Monthly Salary Expenditure:</h2>
+        <h2>Monthly Salary Expenditure:</h2>
     </div>
-      <!-- to be added via JavaScript -->
+    <!-- to be added via JavaScript -->
 
-  </body>
+</body>
+
 </html>
