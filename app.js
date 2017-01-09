@@ -51,9 +51,8 @@ function clearForm() {
 }
 
 function salary(add) {
-    var current=document.getElementById('corpExpenses').innerHTML;
-    current=Number(current)+add / 12;
-    // $("corpExpenses").append(corpExpenses);
+    var current = document.getElementById('corpExpenses').innerHTML;
+    current = Number(current) + add / 12;
     $("#corpExpenses").html(current.toFixed(2));
 
 
