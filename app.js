@@ -1,9 +1,5 @@
 var corpExpenses = 0;
 
-function deleteButton(id){
-  document.getElementById(id).remove();
-    console.log('Employee Deleted');
-};
 $(function() {
     console.log('document is ready');
 
@@ -25,13 +21,6 @@ $(function() {
 
         salary(formData.employeeSalary);
     });
-    // $('button').onclick = function(event) {
-    //     console.log('Employee Deleted');
-    //   };
-    // document.getElementById('deleteButton').onclick = function(event) {
-    //     console.log('Employee Deleted');
-    //   };
-
 
 });
 
@@ -52,7 +41,8 @@ function appendDom(emp) {
     $ul.append($deleteButton);
     $emp.append($ul);
 
-    $('#employees').append($emp); // append our div to the DOM
+    $('#employees').append($emp);
+    $('#'+emp.employeeIdNumber).data('salary', emp.employeeSalary); // append our div to the DOM
 }
 
 function clearForm() {
@@ -63,7 +53,15 @@ function clearForm() {
 function salary(add) {
     var current = document.getElementById('corpExpenses').innerHTML;
     current = Number(current) + add / 12;
-    $("#corpExpenses").html(current.toFixed(2));
+    $("#corpExpenses").html(Math.round(current*100)/100);
+    //*100/100 fixes negative 0 and mysterious free radical numbers problem
 
 
 }
+function deleteButton(id){
+  var employee = document.getElementById(id);
+  var salaryVariable = Number($(employee).data('salary'));
+  salary(0-salaryVariable);
+  employee.remove();
+    console.log('Employee Deleted');
+    };

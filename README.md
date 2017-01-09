@@ -1,7 +1,7 @@
-# Weekend 1 Challenge Starter Repo
-
-If you want, you can start your project by forking and cloning this repo.
-
-However, feel free to start from scratch,too.
-
-**REMEMBER:** Carefully read the instructions in the assignment app.
+# Weekend 1 Challenge Starter Repo  
+##Erik Noonan
+###Application takes in Employee Name, ID number, Job Title, and annual salary  
+###For all employees submitted into the app, app will calculate the net-sum monthly salary expenditure  
+###App allows employees which have been input into the calculator to be removed via a delete button  
+###If employees are removed, the net-sum monthly salary expenditure will be recalculated  
+#####Stretch Goal would be styling of any kind.
