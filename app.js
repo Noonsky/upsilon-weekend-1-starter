@@ -25,14 +25,14 @@ $(function() {
 });
 
 function appendDom(emp) {
-    var $emp = $('<div id= "'+ emp.employeeIdNumber +'" class="employee"></div>'); // create a div jQuery object
+    var $emp = $('<div id= "' + emp.employeeIdNumber + '" class="employee"></div>'); // create a div jQuery object
     var $ul = $('<ul></ul>');
     var $firstName = $('<li>' + emp.employeeFirstName + '</li>');
     var $lastName = $('<li>' + emp.employeeLastName + '</li>');
     var $id = $('<li>' + emp.employeeIdNumber + '</li>');
     var $job = $('<li>' + emp.employeeJobTitle + '</li>');
     var $salary = $('<li id="salary">' + emp.employeeSalary + '</li>');
-    var $deleteButton = $('<button id="deleteButton" onclick="deleteButton('+ emp.employeeIdNumber +')">Delete Employee</button>');
+    var $deleteButton = $('<button id="deleteButton" onclick="deleteButton(' + emp.employeeIdNumber + ')">Delete Employee</button>');
     $ul.append($firstName);
     $ul.append($lastName);
     $ul.append($id);
@@ -42,7 +42,7 @@ function appendDom(emp) {
     $emp.append($ul);
 
     $('#employees').append($emp);
-    $('#'+emp.employeeIdNumber).data('salary', emp.employeeSalary); // append our div to the DOM
+    $('#' + emp.employeeIdNumber).data('salary', emp.employeeSalary); // append our div to the DOM
 }
 
 function clearForm() {
@@ -53,15 +53,16 @@ function clearForm() {
 function salary(add) {
     var current = document.getElementById('corpExpenses').innerHTML;
     current = Number(current) + add / 12;
-    $("#corpExpenses").html(Math.round(current*100)/100);
-    //*100/100 fixes negative 0 and mysterious free radical numbers problem
+    $("#corpExpenses").html(Math.round(current * 100) / 100);
+    // line 56: "Math.round(current*100)/100" fixes negative 0 and mysterious free radical numbers problem
 
 
 }
-function deleteButton(id){
-  var employee = document.getElementById(id);
-  var salaryVariable = Number($(employee).data('salary'));
-  salary(0-salaryVariable);
-  employee.remove();
+
+function deleteButton(id) {
+    var employee = document.getElementById(id);
+    var salaryVariable = Number($(employee).data('salary'));
+    salary(0 - salaryVariable);
+    employee.remove();
     console.log('Employee Deleted');
-    };
+};
