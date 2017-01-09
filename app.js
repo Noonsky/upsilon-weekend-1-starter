@@ -1,6 +1,7 @@
 var corpExpenses = 0;
 
 
+
 $(function() {
     console.log('document is ready');
 
@@ -50,9 +51,10 @@ function clearForm() {
 }
 
 function salary(add) {
-    corpExpenses=(corpExpenses+add) / 12;
+    var current=document.getElementById('corpExpenses');
+    current=(current+add) / 12;
     // $("corpExpenses").append(corpExpenses);
-    $("#corpExpenses").html(String(corpExpenses));
+    $("#corpExpenses").html(Number(current));
 
 
 }
