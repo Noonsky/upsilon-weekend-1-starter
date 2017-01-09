@@ -1,7 +1,9 @@
 var corpExpenses = 0;
 
-
-
+function deleteButton(id){
+  document.getElementById(id).remove();
+    console.log('Employee Deleted');
+};
 $(function() {
     console.log('document is ready');
 
@@ -23,23 +25,31 @@ $(function() {
 
         salary(formData.employeeSalary);
     });
+    // $('button').onclick = function(event) {
+    //     console.log('Employee Deleted');
+    //   };
+    // document.getElementById('deleteButton').onclick = function(event) {
+    //     console.log('Employee Deleted');
+    //   };
 
 
 });
 
 function appendDom(emp) {
-    var $emp = $('<div class="employee"></div>'); // create a div jQuery object
+    var $emp = $('<div id= "'+ emp.employeeIdNumber +'" class="employee"></div>'); // create a div jQuery object
     var $ul = $('<ul></ul>');
     var $firstName = $('<li>' + emp.employeeFirstName + '</li>');
     var $lastName = $('<li>' + emp.employeeLastName + '</li>');
     var $id = $('<li>' + emp.employeeIdNumber + '</li>');
     var $job = $('<li>' + emp.employeeJobTitle + '</li>');
     var $salary = $('<li id="salary">' + emp.employeeSalary + '</li>');
+    var $deleteButton = $('<button id="deleteButton" onclick="deleteButton('+ emp.employeeIdNumber +')">Delete Employee</button>');
     $ul.append($firstName);
     $ul.append($lastName);
     $ul.append($id);
     $ul.append($job);
     $ul.append($salary);
+    $ul.append($deleteButton);
     $emp.append($ul);
 
     $('#employees').append($emp); // append our div to the DOM
