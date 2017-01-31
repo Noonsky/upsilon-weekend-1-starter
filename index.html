@@ -2,51 +2,120 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>Weekend 1</title>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="app.js" charset="utf-8"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Awesome Employee Form</title>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js'></script>
+    <script src='app.js'></script>
+    <link rel='stylesheet' href='stylesheet.css'>
 </head>
 
 <body>
-    <div id="form">
-        <h3>Employee Form</h3>
+    <main ng-app='salaryCalc'>
+        <section ng-controller='SalaryCalcController as calc'>
 
-        <form>
-            <div class="formline">
-                <label for="employeeFirstName">First Name</label>
-                <input type="text" id="employeeFirstName" name="employeeFirstName" /></div>
-            <div class="formline">
-                <label for="employeeLastName">Last Name</label>
-                <input type="text" id="employeeLastName" name="employeeLastName" /></div>
-            <div class="formline">
-                <label for="employeeIdNumber">ID Number</label>
-                <input type="text" id="employeeIdNumber" name="employeeIdNumber" /></div>
-            <div class="formline">
-                <label for="employeeJobTitle">Job Title</label>
-                <input type="text" id="employeeJobTitle" name="employeeJobTitle" /></div>
-            <div class="formline">
-                <label for="employeeSalary">Annual Salary</label>
-                <input type="number" id="employeeSalary" name="employeeSalary" /></div>
-            <input type="submit" value="Submit" />
-        </form>
-    </div>
-    <div id="employees">
-        <h2><span>Monthly Salary Expenditures:</span><span id="corpExpenses">0</span></h2>
-        <div>
-            <ul>
-                <li id="top">First Name</li>
-                <li id="top">Last Name</li>
-                <li id="top">ID</li>
-                <li id="top">Title</li>
-                <li id="top">Annual Salary</li>
+            <header>
+                <h1>Awesome Employee Form</h1>
+            </header>
+            <section>
+                <h2>Enter Employee Info</h2>
+                <form id='employee-info'>
+                    <label for='firstName'>First Name:</label>
+                    <input type="text" id='firstName' name='firstName' ng-model='calc.employee.firstName'>
 
+                    <label for='lastName'>Last Name:</label>
+                    <input type="text" id='lastName' name='lastName' ng-model='calc.employee.lastName'>
 
-            </ul>
-        </div>
-    </div>
+                    <label for='idNumber'>Id Number:</label>
+                    <input type="text" id='idNumber' name='idNumber' ng-model='calc.employee.idNumber'>
 
+                    <label for='jobTitle'>Job Title:</label>
+                    <input type="text" id='jobTitle' name='jobTitle' ng-model='calc.employee.jobTitle'>
+
+                    <label for='annualSalary'>Annual Salary:</label>
+                    <input type="number" id='annualSalary' name='annualSalary' ng-model='calc.employee.salary'>
+
+                    <button type='submit' ng-click='calc.createEmployee()'>Submit</button>
+                </form>
+            </section>
+
+            <main>
+
+                <section>
+                    <h2>Employee List</h2>
+                    <table class='employeeList'>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Id #</th>
+                            <th>Job Title</th>
+                            <th>Annual Salary</th>
+                            <th class='.delButton'></th>
+                        </tr>
+                        <tr ng-repeat='employee in calc.employees'>
+                            <td>{{ employee.firstName }}</td>
+                            <td>{{ employee.lastName }}</td>
+                            <td>{{ employee.idNumber }}</td>
+                            <td>{{ employee.jobTitle }}</td>
+                            <td>${{ employee.salary }}</td>
+                            <td><button ng-click='calc.deleteEmployee($index)'>Delete</button></td>
+                        </tr>
+                    </table>
+                </section>
+                <section>
+                    <h2>Monthly Salary Costs</h2>
+                    <p>Total: ${{ calc.totalSalary }}</p>
+                </section>
+            </main>
+        </section>
+    </main>
 </body>
 
 </html>
+
+<!-- previous code with jQuery below-->
+
+<!-- <html>
+<head>
+  <title>Awesome Employee Form</title>
+  <script src="jquery.js"></script>
+  <script src="client.js"></script>
+</head>
+<body> -->
+<!-- Form section for new employee -->
+<!-- <section>
+    <form id="newEmployeeForm">
+        <input type="text" name="firstName" placeholder="First Name">
+        <input type="text" name="lastName" placeholder="Last Name">
+        <input type="number" name="number" placeholder="Employee ID Number">
+        <input type="text" name="title" placeholder="Title">
+        <input type="number" name="salary" placeholder="Salary">
+        <button type="submit" name="newEmployeeButton">Submit</button>
+    </form>
+</section> -->
+
+<!-- Table of employees list -->
+<!-- <section>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Number</th>
+                <th>Title</th>
+                <th>Salary</th> -->
+<!-- <th>Delete</th> -->
+<!-- </tr>
+        </thead>
+        <tbody id="employeesTable"> -->
+<!-- This is where my new rows will go -->
+<!-- </tbody>
+    </table>
+</section> -->
+
+<!-- Salary Total Section -->
+<!-- <section>
+    Monthly Salary Expenditures: <span id="monthlySalary">0</span>
+</section>
+
+</body>
+
+</html> -->

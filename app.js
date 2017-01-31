@@ -1,68 +1,93 @@
-var corpExpenses = 0;
+var app = angular.module('salaryCalc', []);
 
-$(function() {
-    console.log('document is ready');
+app.controller('SalaryCalcController', function() {
+    console.log('SalaryCalcController loaded');
 
-    $('form').on('submit', function(event) {
-        console.log('form submitted');
+    var intro = this;
+    intro.employees = [];
+    intro.totalSalary = 0;
 
-        event.preventDefault();
-
-        var formData = {};
-        var formAsArray = $(this).serializeArray();
-
-        formAsArray.forEach(function(input) {
-            formData[input.name] = input.value;
+    intro.getSalary = function() {
+        intro.totalSalary = 0;
+        intro.employees.forEach(function(employee) {
+            intro.totalSalary += employee.salary;
         });
 
-        appendDom(formData);
+        intro.totalSalary = (intro.totalSalary / 12).toFixed(2);
+    };
 
-        clearForm();
+    intro.createEmployee = function() {
+        intro.employees.push(angular.copy(intro.employee));
+        intro.getSalary();
+    };
 
-        salary(formData.employeeSalary);
-    });
-
+    intro.deleteEmployee = function(index) {
+        intro.employees.splice(index, 1);
+        intro.getSalary();
+    };
 });
 
-function appendDom(emp) {
-    var $emp = $('<div id= "' + emp.employeeIdNumber + '" class="employee"></div>'); // create a div jQuery object
-    var $ul = $('<ul></ul>');
-    var $firstName = $('<li>' + emp.employeeFirstName + '</li>');
-    var $lastName = $('<li>' + emp.employeeLastName + '</li>');
-    var $id = $('<li>' + emp.employeeIdNumber + '</li>');
-    var $job = $('<li>' + emp.employeeJobTitle + '</li>');
-    var $salary = $('<li id="salary">' + emp.employeeSalary + '</li>');
-    var $deleteButton = $('<button id="deleteButton" onclick="deleteButton(' + emp.employeeIdNumber + ')">Delete Employee</button>');
-    $ul.append($firstName);
-    $ul.append($lastName);
-    $ul.append($id);
-    $ul.append($job);
-    $ul.append($salary);
-    $ul.append($deleteButton);
-    $emp.append($ul);
-
-    $('#employees').append($emp);
-    $('#' + emp.employeeIdNumber).data('salary', emp.employeeSalary); // append our div to the DOM
-}
-
-function clearForm() {
-    $('form').find('input[type=text]').val('');
-    $('form').find('input[type=number]').val('');
-}
-
-function salary(add) {
-    var current = document.getElementById('corpExpenses').innerHTML;
-    current = Number(current) + add / 12;
-    $("#corpExpenses").html(Math.round(current * 100) / 100);
-    // line 56: "Math.round(current*100)/100" fixes negative 0 and mysterious free radical numbers problem
-
-
-}
-
-function deleteButton(id) {
-    var employee = document.getElementById(id);
-    var salaryVariable = Number($(employee).data('salary'));
-    salary(0 - salaryVariable);
-    employee.remove();
-    console.log('Employee Deleted');
-};
+// // Old code with jQuery below
+//
+// $(function(){
+//   console.log('jQuery is working!!!!!!!!!');
+//   var totalMonthlySalary = 0;
+//
+//   $('#employeesTable').on('click', '.deleteButton', function(){
+//     // var salaryToRemoveFromTotal = $(this).parent().prev().text();
+//     console.log('data is: ', $(this).parent().data()); // this is an object like {salary: "24"}
+//     var salaryToRemoveFromTotal = $(this).parent().data('salary');
+//     updateMonthlySalary("-" + salaryToRemoveFromTotal);
+//     $(this).parent().parent().remove();
+//   });
+//
+//   $('#newEmployeeForm').on('submit', function(event){
+//     event.preventDefault(); // stop the page from reloading and redirecting
+//     console.log('Form has been submitted!!');
+//
+//     var newEmployeeArray = $(this).serializeArray(); // get the information from the form
+//     console.log(newEmployeeArray);
+//
+//     var newEmployeeObject = {};
+//
+//     // Loop through all of the input properties in the array
+//     // to make a single object
+//     for(var i = 0; i < newEmployeeArray.length; i++){
+//       var inputFieldName = newEmployeeArray[i].name;
+//       var inputFieldValue = newEmployeeArray[i].value;
+//       newEmployeeObject[inputFieldName] = inputFieldValue;
+//     }
+//
+//     console.log(newEmployeeObject);
+//
+//     var $newRow = $('<tr>' +
+//     '<td>' + newEmployeeObject.firstName + '</td>'+
+//     '<td>' + newEmployeeObject.lastName + '</td>'+
+//     '<td>' + newEmployeeObject.number + '</td>'+
+//     '<td>' + newEmployeeObject.title + '</td>'+
+//     '<td>' + newEmployeeObject.salary + '</td>'+
+//     '</tr>');
+//
+//     var $deleteButton = $('<td><button class="deleteButton">Delete</button></td>');
+//
+//     $deleteButton.data('salary', newEmployeeObject.salary);
+//
+//     $newRow.append($deleteButton);
+//
+//     $('#employeesTable').append($newRow);
+//
+//     $('#newEmployeeForm input[type="text"]').val('');
+//     $('#newEmployeeForm input[type="number"]').val('');
+//
+//     updateMonthlySalary(newEmployeeObject.salary);
+//
+//   });
+//
+//   function updateMonthlySalary(newEmployeeSalary) {
+//     // With new employee, divide salary by 12, add to current totalMonthlySalary
+//     totalMonthlySalary += newEmployeeSalary / 12;
+//     console.log('totalMonthlySalary is ', totalMonthlySalary);
+//
+//     $('#monthlySalary').text(totalMonthlySalary.toLocaleString("en-US", { style: 'currency', currency: 'USD' }));
+//   }
+// });
